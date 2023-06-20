@@ -1,0 +1,1001 @@
+<?xml version="1.0" ?>
+<sdf version='1.6'>
+  <model name='tracked_robot'>
+    <link name='Body'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0.004956 -0 0.002013 0 -0 0</pose>
+        <mass>14.616</mass>
+        <inertia>
+          <ixx>0.151133</ixx>
+          <ixy>3.69305e-18</ixy>
+          <ixz>0.00426863</ixz>
+          <iyy>0.497899</iyy>
+          <iyz>-2.49612e-17</iyz>
+          <izz>0.632236</izz>
+        </inertia>
+      </inertial>
+      <collision name='Body_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <!-- <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Body.STL</uri>
+          </mesh> -->
+	  <box>
+	    <size>0.6 0.25 0.06</size>
+	  </box>
+        </geometry>
+      </collision>
+      <!-- <collision name='Body_fixed_joint_lump__Track_L_collision_1'>
+        <pose frame=''>0 0.125 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Track_L.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='Body_fixed_joint_lump__Track_R_collision_2'>
+        <pose frame=''>0 -0.125 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Track_R.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='Body_visual'>
+        <pose frame=''>-0.2 0 0 1.5708 -0 0</pose>
+        <geometry>
+          <mesh>
+            <!-- <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Body.STL</uri> -->
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <!-- <visual name='Body_fixed_joint_lump__Track_L_visual_1'>
+        <pose frame=''>0 0.125 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Track_L.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='Body_fixed_joint_lump__Track_R_visual_2'>
+        <pose frame=''>0 -0.125 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Track_R.STL</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+    </link>
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+    <link name="vlp">
+        <pose>0 0 0.095455 0 0 0</pose>
+        <inertial>
+            <mass>0.1</mass>
+            <inertia>
+                <ixx>0.000090623</ixx>
+                <iyy>0.000090623</iyy>
+                <izz>0.000091036</izz>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyz>0</iyz>
+            </inertia>
+        </inertial>
+        <collision name="top_collision">
+            <geometry>
+                <cylinder>
+                    <!-- Radius and length provided by Velodyne -->
+                    <radius>0.04267</radius>
+                    <length>0.07357</length>
+                </cylinder>
+            </geometry>
+        </collision>
+        <!-- The visual is mostly a copy of the collision -->
+        <visual name="top_visual">
+            <geometry>
+                <cylinder>
+                    <radius>0.04267</radius>
+                    <length>0.07357</length>
+                </cylinder>
+            </geometry>
+        </visual>
+        <!-- Add a ray sensor, and give it a name -->
+        <sensor type="ray" name="sensor">
+            <pose>0 0 -0.004645 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1875</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.14159</min_angle>
+                        <max_angle>3.14159</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>16</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-0.261799</min_angle>
+                        <max_angle> 0.261799</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.05</min>
+                    <max>100</max>
+                    <resolution>0.001</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0</mean>
+                    <stddev>0</stddev>
+                </noise>
+            </ray>
+        </sensor>
+    </link>
+    <joint name="fixedJoint_vlp" type="fixed">
+      <parent>Body</parent>
+      <child>vlp</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+<!--############################################################################-->
+
+
+
+
+
+
+    <link name="Track_L_1">
+      <pose frame=''>-0.3 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_1" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_1</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_2">
+      <pose frame=''>-0.225 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_2" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_2</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_3">
+      <pose frame=''>-0.15 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_3" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_3</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_4">
+      <pose frame=''>-0.075 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_4" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_4</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_5">
+      <pose frame=''>0 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_5" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_5</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_6">
+      <pose frame=''>0.075 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_6" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_6</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_7">
+      <pose frame=''>0.15 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_7" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_7</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_8">
+      <pose frame=''>0.225 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_8" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_8</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_L_9">
+      <pose frame=''>0.3 0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_L_9" type="revolute">
+      <parent>Body</parent>
+      <child>Track_L_9</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_1">
+      <pose frame=''>-0.3 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_1" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_1</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_2">
+      <pose frame=''>-0.225 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_2" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_2</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_3">
+      <pose frame=''>-0.15 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_3" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_3</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_4">
+      <pose frame=''>-0.075 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_4" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_4</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_5">
+      <pose frame=''>0 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_5" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_5</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_6">
+      <pose frame=''>0.075 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_6" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_6</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_7">
+      <pose frame=''>0.15 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_7" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_7</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_8">
+      <pose frame=''>0.225 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_8" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_8</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Track_R_9">
+      <pose frame=''>0.3 -0.25 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.11</radius>
+	    <length>0.03</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Track_R_9" type="revolute">
+      <parent>Body</parent>
+      <child>Track_R_9</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name='Flipper_L'>
+      <pose frame=''>0.3 0.165 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.12763 0.012498 0 0 -0 0</pose>
+        <mass>0.75702</mass>
+        <inertia>
+          <ixx>0.00048991</ixx>
+          <ixy>-1.7332e-07</ixy>
+          <ixz>3.6502e-08</ixz>
+          <iyy>0.008777</iyy>
+          <iyz>-3.2985e-09</iyz>
+          <izz>0.0083653</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='Flipper_L_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Flipper_L.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <visual name='Flipper_L_visual'>
+        <pose frame=''>0 -0.5 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <!-- <uri>model://tracked_robot/meshes/Flipper_L.STL</uri> -->
+            <uri>model://tracked_robot/meshes/arm_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='Joint_L' type='revolute'>
+      <child>Flipper_L</child>
+      <parent>Body</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='Flipper_R'>
+      <pose frame=''>0.3 -0.165 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.127654 -0.012496 -1e-06 0 -0 0</pose>
+        <mass>0.756903</mass>
+        <inertia>
+          <ixx>0.000489882</ixx>
+          <ixy>3.58229e-07</ixy>
+          <ixz>-1.00637e-07</ixz>
+          <iyy>0.00877497</iyy>
+          <iyz>-9.5823e-09</iyz>
+          <izz>0.00836334</izz>
+        </inertia>
+      </inertial>
+      <!-- <collision name='Flipper_R_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Flipper_R.STL</uri>
+          </mesh>
+        </geometry>
+      </collision> -->
+      <!-- <visual name='Flipper_R_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tracked_robot/meshes/Flipper_R.STL</uri>
+          </mesh>
+        </geometry>
+      </visual> -->
+    </link>
+    <joint name='Joint_R' type='revolute'>
+      <child>Flipper_R</child>
+      <parent>Body</parent>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+
+
+
+    <link name="Flipper_L_1">
+      <pose frame=''>0.3 0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.0575</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_L_1" type="revolute">
+      <parent>Flipper_L</parent>
+      <child>Flipper_L_1</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Flipper_L_2">
+      <pose frame=''>0.45 0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.04825</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_L_2" type="revolute">
+      <parent>Flipper_L</parent>
+      <child>Flipper_L_2</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Flipper_L_3">
+      <pose frame=''>0.6 0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.04825</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_L_3" type="revolute">
+      <parent>Flipper_L</parent>
+      <child>Flipper_L_3</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Flipper_R_1">
+      <pose frame=''>0.3 -0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.0575</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_R_1" type="revolute">
+      <parent>Flipper_R</parent>
+      <child>Flipper_R_1</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Flipper_R_2">
+      <pose frame=''>0.45 -0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.04825</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_R_2" type="revolute">
+      <parent>Flipper_R</parent>
+      <child>Flipper_R_2</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <link name="Flipper_R_3">
+      <pose frame=''>0.6 -0.3 0 -1.5707963267948966 -0.08726646259971647 0</pose>
+      <inertial>
+	<mass>0.2</mass>
+	<inertia>
+	  <ixx>0.002</ixx>
+	  <iyy>0.002</iyy>
+	  <izz>0.004</izz>
+	  <ixy>0</ixy>
+	  <ixz>0</ixz>
+	  <iyz>0</iyz>
+	</inertia>
+      </inertial>
+      <collision name="collision">
+	<geometry>
+	  <cylinder>
+	    <radius>0.04825</radius>
+	    <length>0.025</length>
+	  </cylinder>
+	</geometry>
+      </collision>
+    </link>
+    <joint name="joint_Flipper_R_3" type="revolute">
+      <parent>Flipper_R</parent>
+      <child>Flipper_R_3</child>
+      <axis>
+	<xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+
+
+
+
+  </model>
+</sdf>

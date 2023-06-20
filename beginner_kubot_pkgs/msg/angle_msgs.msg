@@ -1,0 +1,39 @@
+float32 ref_angle_1
+float32 ref_angle_2
+float32 ref_angle_3
+float32 ref_angle_4
+float32 ref_angle_5
+float32 ref_angle_6
+float32 ref_angle_7
+float32 ref_angle_8
+float32 ref_angle_9
+float32 ref_angle_10
+float32 ref_angle_11
+float32 ref_angle_12
+
+float32 present_angle_1
+float32 present_angle_2
+float32 present_angle_3
+float32 present_angle_4
+float32 present_angle_5
+float32 present_angle_6
+float32 present_angle_7
+float32 present_angle_8
+float32 present_angle_9
+float32 present_angle_10
+float32 present_angle_11
+float32 present_angle_12
+
+float32 error_angle_1
+float32 error_angle_2
+float32 error_angle_3
+float32 error_angle_4
+float32 error_angle_5
+float32 error_angle_6
+float32 error_angle_7
+float32 error_angle_8
+float32 error_angle_9
+float32 error_angle_10
+float32 error_angle_11
+float32 error_angle_12
+
